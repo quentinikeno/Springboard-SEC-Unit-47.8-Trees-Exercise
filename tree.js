@@ -14,7 +14,18 @@ class Tree {
 
 	/** sumValues(): add up all of the values in the tree. */
 
-	sumValues(sum = 0) {}
+	sumValues(sum = 0) {
+		if (this.root) {
+			let toVisitStack = [this.root];
+
+			while (toVisitStack.length) {
+				let current = toVisitStack.pop();
+				sum += current.val;
+				for (let child of current.children) toVisitStack.push(child);
+			}
+		}
+		return sum;
+	}
 
 	/** countEvens(): count all of the nodes in the tree with even values. */
 
