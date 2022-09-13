@@ -129,7 +129,25 @@ class BinaryTree {
 	/** Further study!
 	 * serialize(tree): serialize the BinaryTree object tree into a string. */
 
-	static serialize() {}
+	static serialize(tree) {
+		const toVisitStack = [tree.root];
+		const vals = [];
+
+		while (toVisitStack.length) {
+			const current = toVisitStack.pop();
+
+			if (current) {
+				const { left, right, val } = current;
+				vals.push(val);
+				toVisitStack.push(right);
+				toVisitStack.push(left);
+			} else {
+				vals.push("#");
+			}
+		}
+
+		return vals.join(" ");
+	}
 
 	/** Further study!
 	 * deserialize(stringTree): deserialize stringTree into a BinaryTree object. */
