@@ -94,7 +94,37 @@ class BinaryTree {
 	 * areCousins(node1, node2): determine whether two nodes are cousins
 	 * (i.e. are at the same level but have different parents. ) */
 
-	areCousins(node1, node2) {}
+	areCousins(node1, node2) {
+		function findParentNode(
+			findNode,
+			currentNode,
+			level = 0,
+			data = { level: 0, parent: null }
+		) {
+			if (data.parent) return data;
+			if (
+				currentNode.left === findNode ||
+				currentNode.right === findNode
+			) {
+				data.level = level + 1;
+				data.parent = currentNode;
+			}
+			if (currentNode.left) {
+				findParentNode(findNode, currentNode.left, level + 1, data);
+			}
+			if (currentNode.right) {
+				findParentNode(findNode, currentNode.right, level + 1, data);
+			}
+			return data;
+		}
+		const node1ParData = findParentNode(node1, this.root);
+		const node2ParData = findParentNode(node2, this.root);
+
+		return (
+			node1ParData.level === node2ParData.level &&
+			node1ParData.parent !== node2ParData.parent
+		);
+	}
 
 	/** Further study!
 	 * serialize(tree): serialize the BinaryTree object tree into a string. */
