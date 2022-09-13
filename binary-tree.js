@@ -152,7 +152,27 @@ class BinaryTree {
 	/** Further study!
 	 * deserialize(stringTree): deserialize stringTree into a BinaryTree object. */
 
-	static deserialize() {}
+	static deserialize(stringTree) {
+		if (!stringTree) return null;
+		const tree = stringTree.split(" ");
+
+		function buildTree() {
+			if (tree.length) {
+				const current = tree.shift();
+
+				if (current === "#") return null;
+
+				const node = new BinaryTreeNode(+current);
+				node.left = buildTree();
+				node.right = buildTree();
+
+				return node;
+			}
+		}
+
+		const root = buildTree();
+		return new BinaryTree(root);
+	}
 
 	/** Further study!
 	 * lowestCommonAncestor(node1, node2): find the lowest common ancestor
