@@ -24,14 +24,18 @@ class BinaryTree {
 	_findDepth(node, max = false) {
 		const { left, right } = node;
 		if (left === null && right === null) return 1;
-		if (left === null) return this._findDepth(left, max) + 1;
-		if (right === null) return this._findDepth(right, max) + 1;
-		return max
-			? Math.max(
+		if (left === null) return this._findDepth(right, max) + 1;
+		if (right === null) return this._findDepth(left, max) + 1;
+		if (max) {
+			return (
+				Math.max(
 					this._findDepth(left, max),
 					this._findDepth(right, max)
-			  ) + 1
-			: Math.min(this._findDepth(left), this._findDepth(right)) + 1;
+				) + 1
+			);
+		} else {
+			return Math.min(this._findDepth(left), this._findDepth(right)) + 1;
+		}
 	}
 
 	/** maxDepth(): return the maximum depth of the tree -- that is,
