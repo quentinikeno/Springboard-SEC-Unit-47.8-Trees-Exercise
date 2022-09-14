@@ -39,6 +39,18 @@ Methods written for a TreeNode and BinaryTreeNode class as part of Springboard's
 > #### nextLarger
 >
 > Given a binary tree and a integer x. Find and return the value of the node with next larger element in the tree i.e. find a node with value just greater than x. Return null if no node is present with value greater than x.
+>
+> #### areCousins
+>
+> Given a binary tree and two nodes, determine whether the two nodes are cousins of each other or not.
+>
+> #### Serialize / Deserialize Binary Tree
+>
+> Design an algorithm to serialize and deserialize a binary tree. Implement both of these methods as statics on the BinaryTree class.
+>
+> #### lowestCommonAncestor
+>
+> Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
 
 ## Tests
 
