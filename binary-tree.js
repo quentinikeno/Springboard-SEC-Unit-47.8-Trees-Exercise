@@ -178,7 +178,20 @@ class BinaryTree {
 	 * lowestCommonAncestor(node1, node2): find the lowest common ancestor
 	 * of two nodes in a binary tree. */
 
-	lowestCommonAncestor(node1, node2) {}
+	lowestCommonAncestor(node1, node2, currentNode = this.root) {
+		if (currentNode === null) return null;
+		if (currentNode === node1 || currentNode === node2) return currentNode;
+		const left = this.lowestCommonAncestor(node1, node2, currentNode.left);
+		const right = this.lowestCommonAncestor(
+			node1,
+			node2,
+			currentNode.right
+		);
+
+		if (left !== null && right !== null) return currentNode;
+		if (left !== null || right !== null) return left || right;
+		if (left === null && right === null) return null;
+	}
 }
 
 module.exports = { BinaryTree, BinaryTreeNode };
